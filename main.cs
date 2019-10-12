@@ -34,6 +34,7 @@ class MainClass {
                 //DataDevolucao
                 //Livro
                 //Usuario
+				//Status
 
         //Metodos:
                 //CancelarReserva -> Void (Argumento: Booleano)
