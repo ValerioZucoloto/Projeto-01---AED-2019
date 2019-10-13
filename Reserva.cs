@@ -2,7 +2,7 @@ using System;
 
 class Reserva {
 
-		private string CodReserva { get; set; }
+	private string CodReserva { get; set; }
         private DateTime DataRecebimento { get; set; }
         private DateTime DataDevolucao { get; set; }
         private Livro LivroObj { get; set; }

@@ -1,11 +1,11 @@
 using System;
 
 class Endereco {
-        public string Cidade {get; set;}
-        public string Bairro {get; set;}
-        public string Rua {get; set;}
-        public int Numero {get; set;} // É possivel alterar o N° da casa
-        public int Cep {get; set} // É possivel alterar o CEP da rua
+        private string Cidade {get; set;}
+        private string Bairro {get; set;}
+        private string Rua {get; set;}
+        private int Numero {get; set;} 
+        private int Cep {get; set} 
 
         public Endereco (string cidade, string bairro, string rua, int numero, int cep) {
                 Cidade = cidade;
@@ -15,15 +15,43 @@ class Endereco {
                 Cep = cep;
         }
 
-        public string GetCidadeBairro() {
-                return Cidade + ", " + Bairro;
-        }
-
         public string GetCidade() {
                 return Cidade;
         }
 
-        public string GetCidadeBairroRua() {
-                return Cidade + ", " + Bairro + ", " + Rua;
+        public void SetCidade(string novaCidade) {
+                Cidade = novaCidade;
+        }
+
+        public string GetBairro() {
+                return Bairro;
+        }
+
+        public void SetBairro(string novoBairro) {
+                Bairro = novoBairro;
+        }
+
+        public string GetRua() {
+                return Rua;
+        }
+
+        public void SetRua (string novaRua) {
+                Rua = novaRua;
+        }
+
+        public int getNumero() {
+                return Numero;
+        }
+
+        public void SetNumero (int novoNumero) {
+                Numero = novoNumero;
+        }
+
+        public int GetCep() {
+                return Cep;
+        }
+
+        public void SetCep (int novoCep) {
+                Cep = novoCep;
         }
 }

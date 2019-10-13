@@ -44,6 +44,7 @@ class MainClass {
 
         //Classe Biblioteca
         //Atributos:
+                // Nome
                 // List <Livros>
                 // List <usuario>
                 // CNPJ
