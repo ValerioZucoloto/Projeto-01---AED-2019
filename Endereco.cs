@@ -5,7 +5,7 @@ class Endereco {
         private string Bairro {get; set;}
         private string Rua {get; set;}
         private int Numero {get; set;} 
-        private int Cep {get; set} 
+        private int Cep {get; set;} 
 
         public Endereco (string cidade, string bairro, string rua, int numero, int cep) {
                 Cidade = cidade;

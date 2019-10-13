@@ -2,10 +2,11 @@ using System;
 
 class Usuario {
         private string Nome {get; set;}
-        private int CodUsuario {get; private set;}
-        private string Cpf {get; private set;}
+        private int CodUsuario {get; set;}
+        private string Cpf {get; set;}
         private string Email {get; set;}
         private Endereco MeuEndereco {get; set;}
+		private string Status { get; set; }
 
         // Construtor com paramêtros de entrada
         public Usuario (string nome, int cod, string cpf, string email, Endereco meuEndereco) {
@@ -14,6 +15,7 @@ class Usuario {
                 Cpf = cpf;
                 Email = email;
                 MeuEndereco = meuEndereco;
+				Status = "Ativo";
         }
 
         // Construtor vazio
@@ -51,11 +53,19 @@ class Usuario {
         }
 
         public void SetEmail (string email) {
-                Email = email
+                Email = email;
         }
         
         public Endereco GetEndereco() {
                 return MeuEndereco;
+        }
+
+		public void SetStatus(string status) {
+                Status = status;
+        }
+        
+        public string GetStatus() {
+                return Status;
         }
 
         // Métodos principais

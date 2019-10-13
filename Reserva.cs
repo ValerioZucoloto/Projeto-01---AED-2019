@@ -43,11 +43,11 @@ class Reserva {
 				+ "\nData do recebimento: "
 				+ DataRecebimento
 				+ "\nData da Devolução: "
-				+ dataDevolucao
+				+ DataDevolucao
 				+ "\nLivro: "
-				+ LivroObj.Titulo
+				+ LivroObj.getTitulo()
 				+ "\nUsuário: " 
-				+ UsuarioObj.Nome;
+				+ UsuarioObj.GetNome();
 		}
 
 		/*************** METODOS GET AND SET ***************/
