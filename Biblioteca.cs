@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Collections.Generic; // Namespace da classe List
 
 class Biblioteca {
@@ -10,8 +11,6 @@ class Biblioteca {
         private Endereco enderecoBiblioteca {get; set;}
         private Reserva reservarLivros {get; set;}
 		private Usuario UsuarioObj { get; set; }
-
-		private string livros = "livros.txt"
 
         // Contrutor com parametros de entrada
         public Biblioteca (string nome, List <Livro> livros, List <Usuario> usuario, string cnpj, Endereco endereco) {
@@ -28,31 +27,30 @@ class Biblioteca {
         }
 
 		//Métodos principais
-		public void CadastrarLivro(Livro livro){
-			try {
-                using(StreamWriter sw = File.AppendText(livros)) {
-
-                    foreach(Livro obj in listaLivros) {
-                        sw.WriteLine("Código Livro: " + obj.getCodLivro());
-                        sw.WriteLine("Titulo: " + obj.getTitulo());
-						sw.WriteLine("Autor: " + obj.getAutor());
-						sw.WriteLine("Gênero: " + obj.getGenero());
-                        sw.WriteLine();
-                    }
-
-                }
-
-            }catch(IOException e) {
-                Console.WriteLine(e.Message);
-            }
+		public static void CadastrarLivro(){
+			
 		}
 
-		public void CadastrarUsuario(Usuario usuario){
-			UsuarioObj.SetStatus("Cancelado");
+		public static void CadastrarUsuario(){
+			
 		}
 
-		public void CancelarCadastro(Usuario usuario){
-			listaUsuarios.Add(usuario);
+		public static void ReservarLivros() {
+
+        }
+
+		public static void OpcoesDisponiveis(){
+			Console.WriteLine();
+			Console.WriteLine("[1] - Ver livros disponíveis");
+			Console.WriteLine("[2] - Cadastrar Usuários");
+			Console.WriteLine("[3] - Cadastrar livros");
+			Console.WriteLine("[4] - Cancelar Usuários");
+			Console.WriteLine("[5] - Sair");
+			Console.WriteLine();
+		}
+
+		public void CancelarCadastro(){
+			
 		}
 
         // Métodos GET / SET

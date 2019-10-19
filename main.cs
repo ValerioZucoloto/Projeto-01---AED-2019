@@ -1,75 +1,119 @@
-using System;
+﻿using System;
 
 class MainClass {
-  public static void Main (string[] args) {
-        //Classe Usuário
-        //Atributos:
-                // Nome
-                // CodUsuario
-                // CPF
-                // Email
-                // Endereco
-        //Metodos:
-                //GetEmail -> Return string 
-                //SetEmail -> Void (Argumento: string)
-                //GetEndereco -> Return Endereco
-                //CadastrarEndereco -> Void (Argumento: Endereco)
-                //AlterarEndereco -> Void (Argumento: Endereco)
-        
-        //Classe Livro
-        //Atributos:
-                // CodLivro
-                // Titulo
-                // Autor
-                // Genero
+    public static void Main(string[] args) {
 
-        //Metedos:
-                //GetTitulo -> return string
-                //GetAutor -> Return string
-                //GetGenero -> Return string
+        Console.WriteLine();
 
-        //Classe Reserva
-                //CodReserva
-                //DataRecebimento
-                //DataDevolucao
-                //Livro
-                //Usuario
-				//Status
+        string usuario = "usuario";
+        int senhaUsuario = 123;
 
-        //Metodos:
-                //CancelarReserva -> Void (Argumento: Booleano)
-                //ProlongarReserva -> Void (Argumento: NovaData)
-                // GetReserva (Retorna informações sobre a reserva) 
+        string admin = "admin";
+        int senhaAdmin = 123;
 
+        Console.WriteLine("--------------- LOGIN ---------------");
+        Console.Write("Usuário: ");
+        string login = Console.ReadLine();
+        Console.Write("Senha: ");
+        int senha = int.Parse(Console.ReadLine());
 
-        //Classe Biblioteca
-        //Atributos:
-                // Nome
-                // List <Livros>
-                // List <usuario>
-                // CNPJ
-                // Endereco
-                // Reserva
-        //Metodos:
-                //CadastrarLivro -> Void (Argumentos: List<Livro>)
-                //CadastrarUsuario -> Void (Argumento: Usuario)
-                //CancelarCadastro -> Void (Argumento: Usuario)
-                
-        
+        while(login != "usuario" && senha != 123 || login != "admin" && senha != 123) {
 
-        //Classe Endereco
-        //Atributos:
-                // Cidade
-                // Bairro
-                // Rua
-                // Numero
-                // CEP
-        //Metodos:
-                // GetCidadeBairro -> Return string
-                // GetCidade -> Return String
-                // GetCidadeBairroRua -> Return String
+            Console.WriteLine();
 
+            Console.WriteLine("Senha Inválida!");
 
+            Console.WriteLine();
 
-  }
+            Console.WriteLine("--------------- LOGIN ---------------");
+            Console.Write("Usuário: ");
+            login = Console.ReadLine();
+            Console.Write("Senha: ");
+            senha = int.Parse(Console.ReadLine());
+
+        }
+
+        if(login == "usuario" && senha == 123) {
+
+            
+
+        }
+        else if(login == "admin" && senha == 123) {
+
+            Biblioteca.OpcoesDisponiveis();
+
+            Console.Write("Escolha a opção: ");
+            int escolha = int.Parse(Console.ReadLine());
+
+            if(escolha < 1 || escolha > 5) {
+
+                Console.WriteLine();
+                Console.WriteLine("Opção Inválida");
+
+                Biblioteca.OpcoesDisponiveis();
+
+                Console.Write("Escolha a opção: ");
+                escolha = int.Parse(Console.ReadLine());
+
+                while(escolha < 1 || escolha > 5) {
+
+                    Console.WriteLine();
+                    Console.WriteLine("Opção Inválida");
+
+                    Biblioteca.OpcoesDisponiveis();
+
+                    Console.Write("Escolha a opção: ");
+                    escolha = int.Parse(Console.ReadLine());
+
+                }
+
+            }
+
+            while(escolha != 5) {
+
+                //Console.WriteLine();
+                //Console.WriteLine("Opção Inválida");
+
+                //Biblioteca.OpcoesDisponiveis();
+
+                //Console.Write("Escolha a opção: ");
+                //escolha = int.Parse(Console.ReadLine());
+
+                switch(escolha) {
+                    case 2:
+                        
+			//Aqui ficará a chamada para o método
+
+                        Biblioteca.OpcoesDisponiveis();
+
+                        Console.Write("Escolha a opção: ");
+                        escolha = int.Parse(Console.ReadLine());
+
+                        while(escolha < 1 || escolha > 5) {
+
+                            Console.WriteLine();
+                            Console.WriteLine("Opção Inválida");
+
+                            Biblioteca.OpcoesDisponiveis();
+
+                            Console.Write("Escolha a opção: ");
+                            escolha = int.Parse(Console.ReadLine());
+
+                        }
+                        break;
+                    case 3:
+
+			//Aqui ficará a chamada para o método
+                        
+                        break;
+                }
+
+            }
+
+        }
+        Console.WriteLine();
+        Console.WriteLine("Programa encerrado!");
+        Console.WriteLine();
+
+    }
 }
