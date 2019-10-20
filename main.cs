@@ -1,9 +1,17 @@
-﻿using System;
+using System;
+using System.IO;
 
 class MainClass {
     public static void Main(string[] args) {
 
-        Console.WriteLine();
+            Usuario Valerio = new Usuario ("Valério");
+            Biblioteca.CadastrarUsuario (Valerio);
+
+            Livro meuLivro = new Livro ("156", "TARZAN", "LINCON", "AVENTURA");
+            Biblioteca.CadastrarLivro (meuLivro);
+
+
+        /*Console.WriteLine();
 
         string usuario = "usuario";
         int senhaUsuario = 123;
@@ -113,7 +121,7 @@ class MainClass {
         }
         Console.WriteLine();
         Console.WriteLine("Programa encerrado!");
-        Console.WriteLine();
+        Console.WriteLine();*/
 
     }
 }

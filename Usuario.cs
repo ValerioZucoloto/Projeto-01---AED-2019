@@ -6,7 +6,7 @@ class Usuario {
         private string Cpf {get; set;}
         private string Email {get; set;}
         private Endereco MeuEndereco {get; set;}
-		private string Status { get; set; }
+	private string Status { get; set; }
 
         // Construtor com paramêtros de entrada
         public Usuario (string nome, int cod, string cpf, string email, Endereco meuEndereco) {
@@ -15,8 +15,14 @@ class Usuario {
                 Cpf = cpf;
                 Email = email;
                 MeuEndereco = meuEndereco;
-				Status = "Ativo";
+		Status = "Ativo";
         }
+
+        public Usuario (string nome) {
+                Nome = nome;
+        }
+
+        
 
         // Construtor vazio
         public Usuario() {

@@ -10,7 +10,10 @@ class Biblioteca {
         private string CNPJ {get; set;}
         private Endereco enderecoBiblioteca {get; set;}
         private Reserva reservarLivros {get; set;}
-		private Usuario UsuarioObj { get; set; }
+	private Usuario UsuarioObj { get; set; }
+
+        public static string CadastroLivro = "CadastroLivro.txt";
+        public static string CadastroUsuario = "CadastroUsuario.txt";
 
         // Contrutor com parametros de entrada
         public Biblioteca (string nome, List <Livro> livros, List <Usuario> usuario, string cnpj, Endereco endereco) {
@@ -27,12 +30,37 @@ class Biblioteca {
         }
 
 		//Métodos principais
-		public static void CadastrarLivro(){
+		public static void CadastrarLivro(Livro novoLivro){
+                        try {
+                                using (StreamWriter escrita = File.AppendText (CadastroLivro)) {
+                                        escrita.WriteLine (novoLivro.getCodLivro());
+                                        escrita.WriteLine (novoLivro.getTitulo());
+                                        escrita.WriteLine (novoLivro.getAutor());
+                                        escrita.WriteLine (novoLivro.getGenero());
+                                }
+                        }
+                        catch (IOException e) {
+                                Console.WriteLine ("Ocorreu um erro !");
+                                Console.WriteLine (e.Message);
+                        }
 			
 		}
 
-		public static void CadastrarUsuario(){
-			
+		public static void CadastrarUsuario(Usuario novoUsuario){
+                        try {
+                                using (StreamWriter sw = File.AppendText (CadastroUsuario)) {
+                                        sw.WriteLine (novoUsuario.GetNome());
+                                        sw.WriteLine (novoUsuario.GetCodUsuario());
+                                        sw.WriteLine (novoUsuario.GetCpf());
+                                        sw.WriteLine (novoUsuario.GetEmail());
+                                        sw.WriteLine (novoUsuario.GetEndereco());
+                                        sw.WriteLine (novoUsuario.GetStatus());
+                                }
+                        }  
+                        catch (IOException e) {
+                                Console.WriteLine ("Ocorreu um erro !");
+                                Console.WriteLine (e.Message);
+                        }                      
 		}
 
 		public static void ReservarLivros() {
