@@ -2,16 +2,14 @@ using System;
 
 class Usuario {
         private string Nome {get; set;}
-        private int CodUsuario {get; set;}
         private string Cpf {get; set;}
         private string Email {get; set;}
         private Endereco MeuEndereco {get; set;}
 	private string Status { get; set; }
 
         // Construtor com paramêtros de entrada
-        public Usuario (string nome, int cod, string cpf, string email, Endereco meuEndereco) {
+        public Usuario (string nome, string cpf, string email, Endereco meuEndereco) {
                 Nome = nome;
-                CodUsuario = cod;
                 Cpf = cpf;
                 Email = email;
                 MeuEndereco = meuEndereco;
@@ -36,14 +34,6 @@ class Usuario {
 
         public void SetNome (string novoNome) {
                 Nome = novoNome;
-        }
-
-        public int GetCodUsuario(){
-                return CodUsuario;
-        }
-
-        public void SetCodUsuario (int novoCod) {
-                CodUsuario = novoCod;
         }
 
         public string GetCpf() {
@@ -83,12 +73,19 @@ class Usuario {
                 MeuEndereco = atualizarEndereco;
         }
 
+		public static void OpcoesDisponiveis(){
+			Console.WriteLine();
+			Console.WriteLine("[1] - Ver livros disponíveis");
+			Console.WriteLine("[2] - Reservar livro");
+			Console.WriteLine("[3] - Sair");
+			Console.WriteLine();
+		}
+
         // Método para exibir as informações da classe Usuario
         public string Exibe() {
                 return "Nome: " 
                 + Nome 
                 + "\nCodigo usuário: " 
-                + CodUsuario 
                 + "\nCPF: "
                 + Cpf 
                 + "\nEmail: " 
