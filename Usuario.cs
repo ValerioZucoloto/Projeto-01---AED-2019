@@ -73,13 +73,16 @@ class Usuario {
                 MeuEndereco = atualizarEndereco;
         }
 
-		public static void OpcoesDisponiveis(){
-			Console.WriteLine();
-			Console.WriteLine("[1] - Ver livros disponíveis");
-			Console.WriteLine("[2] - Reservar livro");
-			Console.WriteLine("[3] - Sair");
-			Console.WriteLine();
-		}
+	public static void OpcoesDisponiveis(){
+		Console.WriteLine();
+		Console.WriteLine("[1] - Ver livros disponíveis");
+		Console.WriteLine("[2] - Ver histórico");
+		Console.WriteLine("[3] - Sair");
+		Console.WriteLine();
+	}
+
+
+        
 
         // Método para exibir as informações da classe Usuario
         public string Exibe() {

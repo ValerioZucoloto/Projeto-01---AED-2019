@@ -34,10 +34,10 @@ class MainClass {
 
             	Usuario.OpcoesDisponiveis();
 
-				Console.Write("Escolha a opção: ");
-            	int escolha = int.Parse(Console.ReadLine());
+			Console.Write("Escolha a opção: ");
+            	        int escolha = int.Parse(Console.ReadLine());
 
-				if(escolha < 1 || escolha > 3) {
+			if(escolha < 1 || escolha > 3) {
 
                 	Console.WriteLine();
                 	Console.WriteLine("Opção Inválida");
@@ -90,10 +90,24 @@ class MainClass {
 							Usuario.OpcoesDisponiveis();
 							
 							Console.Write("Escolha a opção: ");
-                    		escolha = int.Parse(Console.ReadLine());
+                    		                        escolha = int.Parse(Console.ReadLine());
 
 						break;
+
+                                                case 2:
+                                                        
+                                                        Console.WriteLine();
+                                                        Console.WriteLine ("Informe o CPF: ");
+                                                        string Cpf = Console.ReadLine();
+                                                        
+                                                        bool valor = Biblioteca.HistoricoReservas(Cpf);
+
+                                                                                                             
+                                                        
+                                                break;
 					}
+
+                                                
 
 				}
 
@@ -129,7 +143,7 @@ class MainClass {
 
             	}
 
-				while(escolha != 5) {
+				while(escolha != 6) {
 
                 	switch(escolha) {
 						case 1:
@@ -227,6 +241,32 @@ class MainClass {
 
 							}
 							break;
+
+                                                case 4:
+                                                        Console.WriteLine();
+							Biblioteca.ExibirUsuariosCadastrados();
+
+							
+							Console.WriteLine();
+                                                        Biblioteca.OpcoesDisponiveis();
+
+							Console.Write("Escolha a opção: ");
+							escolha = int.Parse(Console.ReadLine());
+
+							while(escolha < 1 || escolha > 5) {
+
+								Console.WriteLine();
+								Console.WriteLine("Opção Inválida");
+
+								Biblioteca.OpcoesDisponiveis();
+
+								Console.Write("Escolha a opção: ");
+								escolha = int.Parse(Console.ReadLine());
+
+							}
+							break;
+
+							
                 		}
 
             	}

@@ -10,7 +10,7 @@ class Biblioteca {
         private string CNPJ {get; set;}
         private Endereco enderecoBiblioteca {get; set;}
         private Reserva reservarLivros {get; set;}
-		private Usuario UsuarioObj { get; set; }
+	private Usuario UsuarioObj { get; set; }
 
         public static string CadastroLivro = "Livros.txt";
         public static string CadastroUsuario = "Usuarios.txt";
@@ -146,21 +146,65 @@ class Biblioteca {
 
 		public static void ReservarLivros() {
 
-        }
+                }
 
 		public static void OpcoesDisponiveis(){
 			Console.WriteLine();
 			Console.WriteLine("[1] - Ver livros Cadastrados");
 			Console.WriteLine("[2] - Cadastrar Usuários");
 			Console.WriteLine("[3] - Cadastrar livros");
-			Console.WriteLine("[4] - Cancelar Usuários");
-			Console.WriteLine("[5] - Sair");
+			Console.WriteLine("[4] - Exibir usuários cadastrados");
+                        Console.WriteLine ("[5] - Excluir usuários");
+			Console.WriteLine("[6] - Sair");
 			Console.WriteLine();
 		}
 
 		public void CancelarCadastro(){
 			
 		}
+
+        // Método para ver histórico de reservas
+        public static bool HistoricoReservas(string Cpf) {
+                try{
+			using(StreamReader sr = File.OpenText("Reservas/" + Cpf + ".txt")){
+				while(!sr.EndOfStream) {
+                                        string line = sr.ReadLine(); ;
+                                        Console.WriteLine(line);
+                                }
+			}
+                        return true;
+
+		}
+                catch(IOException e) {
+                        
+                        Console.WriteLine("CPF INVÁLIDO !");
+                        return false;
+                }
+
+                               
+        }
+
+        public static void ExibirUsuariosCadastrados() {
+                try{
+			using(StreamReader sr = File.OpenText(CadastroUsuario)){
+				while(!sr.EndOfStream) {
+                                        string line = sr.ReadLine();
+                                        Console.WriteLine(line);
+                                }
+                                
+			}                   
+		}
+               
+                
+                catch(IOException e) {
+                        
+                        Console.WriteLine ("Ocorreu um erro !");
+                        Console.WriteLine(e.Message);
+                        
+                }
+                
+        }
+       
 
         // Métodos GET / SET
 
