@@ -130,19 +130,31 @@ class Biblioteca {
 
 		public static void CadastrarUsuario(Usuario novoUsuario){
 				try {
-						//Caminho da pasta Usuarios
-						Directory.CreateDirectory(CadastroUsuario);
-						string meuUsuario = novoUsuario.GetCpf().Replace(".", "").Replace("-", "") + ".txt";
-						         using (StreamWriter sw = File.AppendText (CadastroUsuario + "/" + meuUsuario)) {
-									 Console.WriteLine("Teste");
-						                sw.WriteLine (novoUsuario.GetNome());
-						                sw.WriteLine (novoUsuario.GetCpf());
-						                sw.WriteLine (novoUsuario.GetEmail());
-						                sw.WriteLine (novoUsuario.GetEndereco());
-						                sw.WriteLine (novoUsuario.GetStatus());
-						                sw.WriteLine();
+					if(!File.Exists("Usuarios")){
+						Directory.CreateDirectory("Usuarios");
+						string meuUsuario = novoUsuario.GetCpf().Replace(".", "").Replace("-", "") + ".txt";               
+							using (StreamWriter sw = File.AppendText ("Usuarios/" + meuUsuario)) {                                                      
+								sw.WriteLine (novoUsuario.GetNome());
+								sw.WriteLine (novoUsuario.GetCpf());
+								sw.WriteLine (novoUsuario.GetEmail());
+								sw.WriteLine (novoUsuario.GetEndereco());
+								sw.WriteLine (novoUsuario.GetStatus());                     
+								sw.WriteLine();                                
+								sw.Close();
+							}		
+					}else{
+						 string meuUsuario = novoUsuario.GetCpf().Replace(".", "").Replace("-", "") + ".txt";               
+							using (StreamWriter sw = File.AppendText ("Usuarios/" + meuUsuario)) {                                                      
+								sw.WriteLine (novoUsuario.GetNome());
+								sw.WriteLine (novoUsuario.GetCpf());
+								sw.WriteLine (novoUsuario.GetEmail());
+								sw.WriteLine (novoUsuario.GetEndereco());
+								sw.WriteLine (novoUsuario.GetStatus());                     
+								sw.WriteLine();                                
+								sw.Close();
+							}
+					}
 				}
-			}  
 					catch (IOException e) {
 							Console.WriteLine ("Ocorreu um erro !");
 							Console.WriteLine (e.Message);
@@ -209,10 +221,24 @@ class Biblioteca {
                 }
                 
         }
+
+		public static void DeletarUsuario(string cpf){
+            if(File.Exists(CadastroUsuario + "/" + cpf + ".txt")) {
+                try {
+                    File.Delete("Usuarios/" + cpf + ".txt");
+					Console.WriteLine("Usuário excluído!");
+					Console.WriteLine();
+                }
+                catch(IOException e) {
+                    Console.WriteLine(e.Message);
+                }
+            }
+            else {
+                Console.WriteLine("CPF inválido, digite novamente: ");
+            }
+		}
        
-
         // Métodos GET / SET
-
         public string GetNome() {
                 return Nome;
         }

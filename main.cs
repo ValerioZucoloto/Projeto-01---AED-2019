@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 
 class MainClass {
     public static void Main(string[] args) {
@@ -276,11 +277,38 @@ class MainClass {
                     		                                escolha = int.Parse(Console.ReadLine());
 
 							}
+								break;
+							case 5:
+
+							Console.WriteLine();
+							Console.Write("Digite o cpf: ");
+           					cpf = Console.ReadLine().Replace(".", "").Replace("-", "").Trim();
+
+							Biblioteca.DeletarUsuario(cpf);
+
+							Biblioteca.OpcoesDisponiveis();
+
+							Console.Write("Escolha a opção: ");
+							escolha = int.Parse(Console.ReadLine());
+
+							while(escolha < 1 || escolha > 5) {
+
+								Console.WriteLine();
+								Console.WriteLine("Opção Inválida");
+
+								Biblioteca.OpcoesDisponiveis();
+
+								Console.Write("Escolha a opção: ");
+								escolha = int.Parse(Console.ReadLine());
+                                Usuario.OpcoesDisponiveis();
+								Console.Write("Escolha a opção: ");
+                    		    escolha = int.Parse(Console.ReadLine());
+
+							}
+
 							break;
 
-							
                 		}
-
             	}
 
         	}
