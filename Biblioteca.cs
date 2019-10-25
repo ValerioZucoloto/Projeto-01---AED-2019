@@ -10,11 +10,12 @@ class Biblioteca {
         private string CNPJ {get; set;}
         private Endereco enderecoBiblioteca {get; set;}
         private Reserva reservarLivros {get; set;}
-	private Usuario UsuarioObj { get; set; }
+		//private Usuario UsuarioObj { get; set; }
 
         public static string CadastroLivro = "Livros.txt";
-        public static string CadastroUsuario = "Usuarios.txt";
+        public static string CadastroUsuario = "Usuarios";
 		private static string reservas = "Reservas";
+        
 
 		//elementos responsavel pelo método de exibir os livros livrosDisponiveis
 		//private static string livrosDisponiveis = "livros.txt";
@@ -128,20 +129,24 @@ class Biblioteca {
 		}
 
 		public static void CadastrarUsuario(Usuario novoUsuario){
-                        try {
-                                using (StreamWriter sw = File.AppendText (CadastroUsuario)) {
-                                        sw.WriteLine (novoUsuario.GetNome());
-                                        sw.WriteLine (novoUsuario.GetCpf());
-                                        sw.WriteLine (novoUsuario.GetEmail());
-                                        sw.WriteLine (novoUsuario.GetEndereco());
-                                        sw.WriteLine (novoUsuario.GetStatus());
-										sw.WriteLine();
-                                }
-                        }  
-                        catch (IOException e) {
-                                Console.WriteLine ("Ocorreu um erro !");
-                                Console.WriteLine (e.Message);
-                        }                      
+				try {
+						//Caminho da pasta Usuarios
+						Directory.CreateDirectory(CadastroUsuario);
+						string meuUsuario = novoUsuario.GetCpf().Replace(".", "").Replace("-", "") + ".txt";
+						         using (StreamWriter sw = File.AppendText (CadastroUsuario + "/" + meuUsuario)) {
+									 Console.WriteLine("Teste");
+						                sw.WriteLine (novoUsuario.GetNome());
+						                sw.WriteLine (novoUsuario.GetCpf());
+						                sw.WriteLine (novoUsuario.GetEmail());
+						                sw.WriteLine (novoUsuario.GetEndereco());
+						                sw.WriteLine (novoUsuario.GetStatus());
+						                sw.WriteLine();
+				}
+			}  
+					catch (IOException e) {
+							Console.WriteLine ("Ocorreu um erro !");
+							Console.WriteLine (e.Message);
+			}                      
 		}
 
 		public static void ReservarLivros() {
@@ -153,7 +158,7 @@ class Biblioteca {
 			Console.WriteLine("[1] - Ver livros Cadastrados");
 			Console.WriteLine("[2] - Cadastrar Usuários");
 			Console.WriteLine("[3] - Cadastrar livros");
-			Console.WriteLine("[4] - Exibir usuários cadastrados");
+			Console.WriteLine("[4] - Exibir cadastro do usuário");
                         Console.WriteLine ("[5] - Excluir usuários");
 			Console.WriteLine("[6] - Sair");
 			Console.WriteLine();
@@ -184,9 +189,9 @@ class Biblioteca {
                                
         }
 
-        public static void ExibirUsuariosCadastrados() {
+        public static void ExibirCadastroUsuario(string cpf) {
                 try{
-			using(StreamReader sr = File.OpenText(CadastroUsuario)){
+			using(StreamReader sr = File.OpenText(CadastroUsuario + "/" + cpf + ".txt")){
 				while(!sr.EndOfStream) {
                                         string line = sr.ReadLine();
                                         Console.WriteLine(line);
@@ -198,7 +203,7 @@ class Biblioteca {
                 
                 catch(IOException e) {
                         
-                        Console.WriteLine ("Ocorreu um erro !");
+                        Console.WriteLine ("CPF NÃO CADASTRADO !");
                         Console.WriteLine(e.Message);
                         
                 }

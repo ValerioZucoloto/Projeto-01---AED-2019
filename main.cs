@@ -102,6 +102,10 @@ class MainClass {
                                                         
                                                         bool valor = Biblioteca.HistoricoReservas(Cpf);
 
+                                                        Usuario.OpcoesDisponiveis();
+							Console.Write("Escolha a opção: ");
+                    		                        escolha = int.Parse(Console.ReadLine());
+
                                                                                                              
                                                         
                                                 break;
@@ -119,7 +123,7 @@ class MainClass {
             	Console.Write("Escolha a opção: ");
             	int escolha = int.Parse(Console.ReadLine());
 
-            	if(escolha < 1 || escolha > 5) {
+            	if(escolha < 1 || escolha > 5 && escolha != 6) {
 
                 	Console.WriteLine();
                 	Console.WriteLine("Opção Inválida");
@@ -143,7 +147,7 @@ class MainClass {
 
             	}
 
-				while(escolha != 6) {
+			while(escolha != 6) {
 
                 	switch(escolha) {
 						case 1:
@@ -244,10 +248,15 @@ class MainClass {
 
                                                 case 4:
                                                         Console.WriteLine();
-							Biblioteca.ExibirUsuariosCadastrados();
+							
+                                                        
+                                                        Console.Write("Informe o CPF: ");
+                                                        cpf = Console.ReadLine();
 
 							
 							Console.WriteLine();
+                                                        Biblioteca.ExibirCadastroUsuario(cpf);
+
                                                         Biblioteca.OpcoesDisponiveis();
 
 							Console.Write("Escolha a opção: ");
@@ -262,6 +271,9 @@ class MainClass {
 
 								Console.Write("Escolha a opção: ");
 								escolha = int.Parse(Console.ReadLine());
+                                                                Usuario.OpcoesDisponiveis();
+							        Console.Write("Escolha a opção: ");
+                    		                                escolha = int.Parse(Console.ReadLine());
 
 							}
 							break;
