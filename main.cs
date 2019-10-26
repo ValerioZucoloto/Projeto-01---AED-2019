@@ -1,11 +1,13 @@
 using System;
 using System.IO;
+using System.Collections.Generic;
 
 class MainClass {
     public static void Main(string[] args) {
 
 		Usuario usuario = new Usuario();
 		Reserva reserva = new Reserva();
+                List <Livro> novosLivros = new List<Livro>();
 
         Console.WriteLine();
 
@@ -227,25 +229,48 @@ class MainClass {
 							livro.SetAutor(autor);
 							livro.SetGenero(genero);
 
-							Biblioteca.CadastrarLivro(livro);
+							novosLivros.Add (livro);
+							//Biblioteca.CadastrarLivro(novosLivros);
 
-							Biblioteca.OpcoesDisponiveis();
+							Console.Write ("Deseja cadastrar um novo livro [S/N]: ");
+							char opcoes = char.Parse(Console.ReadLine());
+
+							while(opcoes == 'S' || opcoes == 's') {
+
+								Console.WriteLine();
+								Console.Write("Código: ");
+								codigo = Console.ReadLine();
+								Console.Write("Titulo: ");
+								titulo = Console.ReadLine();
+								Console.Write("Autor: ");
+								autor = Console.ReadLine();
+								Console.Write("Genero: ");
+								genero = Console.ReadLine();
+								Console.WriteLine();
+
+								livro = new Livro();
+								livro.SetCodLivro(codigo);
+								livro.SetTitulo(titulo);
+								livro.SetAutor(autor);
+								livro.SetGenero(genero);
+								
+								//novosLivros.Clear();
+								novosLivros.Add (livro);
+								//Biblioteca.CadastrarLivro(novosLivros);
+
+								Console.Write ("Deseja cadastrar um novo livro ? (S/N)");
+								opcoes = char.Parse(Console.ReadLine());
+							}
+
+								Biblioteca.CadastrarLivro(novosLivros);
+								novosLivros.Clear();
+
+                                Biblioteca.OpcoesDisponiveis();
 
 							Console.Write("Escolha a opção: ");
 							escolha = int.Parse(Console.ReadLine());
-
-							while(escolha < 1 || escolha > 5) {
-
-								Console.WriteLine();
-								Console.WriteLine("Opção Inválida");
-
-								Biblioteca.OpcoesDisponiveis();
-
-								Console.Write("Escolha a opção: ");
-								escolha = int.Parse(Console.ReadLine());
-
-							}
-							break;
+                                                        
+                                                break;
 
                                                 case 4:
                                                         Console.WriteLine();

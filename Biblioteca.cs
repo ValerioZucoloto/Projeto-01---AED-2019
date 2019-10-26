@@ -10,11 +10,12 @@ class Biblioteca {
         private string CNPJ {get; set;}
         private Endereco enderecoBiblioteca {get; set;}
         private Reserva reservarLivros {get; set;}
+        private Livro newLivro {get; set;}
 		//private Usuario UsuarioObj { get; set; }
 
         public static string CadastroLivro = "Livros";
         public static string CadastroUsuario = "Usuarios";
-	private static string reservas = "Reservas";
+		private static string reservas = "Reservas";
         
 
 		//elementos responsavel pelo método de exibir os livros livrosDisponiveis
@@ -34,6 +35,23 @@ class Biblioteca {
         public Biblioteca () {
 
         }
+
+		public static void CadastrarLivro(List<Livro> listaLivros){
+			Directory.CreateDirectory("Livros");
+			foreach(Livro L in listaLivros){
+				string cod = L.getCodLivro();
+				try{
+					using(StreamWriter sw = File.AppendText("Livros/" + cod + ".txt")){
+						sw.WriteLine(L.getCodLivro());
+						sw.WriteLine(L.getTitulo());
+						sw.WriteLine(L.getAutor());
+						sw.WriteLine(L.getGenero());
+					}
+				}catch(IOException e){
+					Console.WriteLine(e.Message);
+				}
+			}
+		}
 
 		//Métodos principais
 		public static void ExibirLivrosDisponiveis(){
@@ -146,38 +164,7 @@ class Biblioteca {
 			}                      
 		}
 
-                public static void CadastrarLivro(Livro novoLivro){
-				try {
-					if(!File.Exists("Livros")){
-						Directory.CreateDirectory("Livros");
-						string meuLivro = novoLivro.getCodLivro().Replace(".", "").Replace("-", "") + ".txt";               
-							using (StreamWriter sw = File.AppendText ("Livros/" + meuLivro)) {                                                      
-								sw.WriteLine (novoLivro.getCodLivro());
-								sw.WriteLine (novoLivro.getTitulo());
-								sw.WriteLine (novoLivro.getAutor());
-								sw.WriteLine (novoLivro.getGenero());
-								                     
-								sw.WriteLine();                                
-								sw.Close();
-							}		
-					}else{
-						 string meuLivro = novoLivro.getCodLivro().Replace(".", "").Replace("-", "") + ".txt";               
-							using (StreamWriter sw = File.AppendText ("Livros/" + meuLivro)) {                                                      
-								sw.WriteLine (novoLivro.getCodLivro());
-								sw.WriteLine (novoLivro.getTitulo());
-								sw.WriteLine (novoLivro.getAutor());
-								sw.WriteLine (novoLivro.getGenero());
-								                     
-								sw.WriteLine();                                
-								sw.Close();
-							}
-					}
-				}
-					catch (IOException e) {
-							Console.WriteLine ("Ocorreu um erro !");
-							Console.WriteLine (e.Message);
-			}                      
-		}
+		
 
 		public static void ReservarLivros() {
 
@@ -189,7 +176,7 @@ class Biblioteca {
 			Console.WriteLine("[2] - Cadastrar Usuários");
 			Console.WriteLine("[3] - Cadastrar livros");
 			Console.WriteLine("[4] - Exibir cadastro do usuário");
-                        Console.WriteLine ("[5] - Excluir usuários");
+             Console.WriteLine ("[5] - Excluir usuários");
 			Console.WriteLine("[6] - Sair");
 			Console.WriteLine();
 		}
