@@ -12,9 +12,9 @@ class Biblioteca {
         private Reserva reservarLivros {get; set;}
 		//private Usuario UsuarioObj { get; set; }
 
-        public static string CadastroLivro = "Livros.txt";
+        public static string CadastroLivro = "Livros";
         public static string CadastroUsuario = "Usuarios";
-		private static string reservas = "Reservas";
+	private static string reservas = "Reservas";
         
 
 		//elementos responsavel pelo método de exibir os livros livrosDisponiveis
@@ -111,22 +111,7 @@ class Biblioteca {
 			
 		}
 
-		public static void CadastrarLivro(Livro novoLivro){
-                        try {
-                                using (StreamWriter escrita = File.AppendText (CadastroLivro)) {
-                                        escrita.WriteLine (novoLivro.getCodLivro());
-                                        escrita.WriteLine (novoLivro.getTitulo());
-                                        escrita.WriteLine (novoLivro.getAutor());
-                                        escrita.WriteLine (novoLivro.getGenero());
-										escrita.WriteLine();
-                                }
-                        }
-                        catch (IOException e) {
-                                Console.WriteLine ("Ocorreu um erro !");
-                                Console.WriteLine (e.Message);
-                        }
-			
-		}
+		
 
 		public static void CadastrarUsuario(Usuario novoUsuario){
 				try {
@@ -150,6 +135,39 @@ class Biblioteca {
 								sw.WriteLine (novoUsuario.GetEmail());
 								sw.WriteLine (novoUsuario.GetEndereco());
 								sw.WriteLine (novoUsuario.GetStatus());                     
+								sw.WriteLine();                                
+								sw.Close();
+							}
+					}
+				}
+					catch (IOException e) {
+							Console.WriteLine ("Ocorreu um erro !");
+							Console.WriteLine (e.Message);
+			}                      
+		}
+
+                public static void CadastrarLivro(Livro novoLivro){
+				try {
+					if(!File.Exists("Livros")){
+						Directory.CreateDirectory("Livros");
+						string meuLivro = novoLivro.getCodLivro().Replace(".", "").Replace("-", "") + ".txt";               
+							using (StreamWriter sw = File.AppendText ("Livros/" + meuLivro)) {                                                      
+								sw.WriteLine (novoLivro.getCodLivro());
+								sw.WriteLine (novoLivro.getTitulo());
+								sw.WriteLine (novoLivro.getAutor());
+								sw.WriteLine (novoLivro.getGenero());
+								                     
+								sw.WriteLine();                                
+								sw.Close();
+							}		
+					}else{
+						 string meuLivro = novoLivro.getCodLivro().Replace(".", "").Replace("-", "") + ".txt";               
+							using (StreamWriter sw = File.AppendText ("Livros/" + meuLivro)) {                                                      
+								sw.WriteLine (novoLivro.getCodLivro());
+								sw.WriteLine (novoLivro.getTitulo());
+								sw.WriteLine (novoLivro.getAutor());
+								sw.WriteLine (novoLivro.getGenero());
+								                     
 								sw.WriteLine();                                
 								sw.Close();
 							}
