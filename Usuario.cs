@@ -5,13 +5,15 @@ class Usuario {
         private string Cpf {get; set;}
         private string Email {get; set;}
         private Endereco MeuEndereco {get; set;}
+        private DateTime DataCadastro {get; set;}
 
         // Construtor com paramêtros de entrada
-        public Usuario (string nome, string cpf, string email, Endereco meuEndereco) {
+        public Usuario (string nome, string cpf, string email, Endereco meuEndereco, DateTime datacadastro) {
 			Nome = nome;
 			Cpf = cpf;
 			Email = email;
 			MeuEndereco = meuEndereco;
+                        DataCadastro = datacadastro;
         }
 
         public Usuario (string nome) {
@@ -50,6 +52,14 @@ class Usuario {
         
         public Endereco GetEndereco() {
                 return MeuEndereco;
+        }
+
+        public DateTime GetDataCadastro() {
+                return DataCadastro;
+        }
+
+        public void SetDataCadastro (DateTime data) {
+                DataCadastro = data;
         }
 
         // Métodos principais

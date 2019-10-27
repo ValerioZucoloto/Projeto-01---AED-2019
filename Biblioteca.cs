@@ -13,7 +13,7 @@ class Biblioteca {
 		private Usuario UsuarioObj { get; set; }
 
         //public static string CadastroLivro = "Livros.txt";
-        public static string CadastroUsuario = "Usuarios";
+                public static string CadastroUsuario = "Usuarios";
 		private static string reservas = "Reservas";
 		private static string Livros = "Livros";
         
@@ -142,6 +142,7 @@ class Biblioteca {
 						sw.WriteLine("Titulo: " + L.getTitulo());
 						sw.WriteLine("Autor: " + L.getAutor());
 						sw.WriteLine("Genero: " + L.getGenero());
+                                                sw.WriteLine ("Cadastro realizado em: " + L.GetDataRegistro());
 						sw.WriteLine();
 					}
 				}catch(IOException e){
@@ -162,6 +163,7 @@ class Biblioteca {
 								sw.WriteLine ("E-mail: " + novoUsuario.GetEmail());
 								sw.WriteLine ("********** INFORMAÇÕES DO ENDEREÇO **********");
 								sw.WriteLine (novoUsuario.GetEndereco());
+                                                                sw.WriteLine ("Cadastro realizado em: " + novoUsuario.GetDataCadastro());
 							}	
 				
 				}
@@ -177,8 +179,9 @@ class Biblioteca {
 			Console.WriteLine("[2] - Cadastrar Usuários");
 			Console.WriteLine("[3] - Cadastrar livros");
 			Console.WriteLine("[4] - Exibir cadastro do usuário");
-            Console.WriteLine ("[5] - Excluir usuários");
-			Console.WriteLine("[6] - Sair");
+                        Console.WriteLine ("[5] - Excluir usuários");
+                        Console.WriteLine ("[6] - Excluir livros");
+			Console.WriteLine("[7] - Sair");
 			Console.WriteLine();
 		}
 
@@ -217,21 +220,39 @@ class Biblioteca {
 			}
         }
 
-		public static void DeletarUsuario(string cpf){
-            if(File.Exists(CadastroUsuario + "/" + cpf + ".txt")) {
-                try {
-                    File.Delete("Usuarios/" + cpf + ".txt");
-					Console.WriteLine();
-					Console.WriteLine("Usuário excluído!");
+                //Método para deletar usuário registrado
+                public static void DeletarUsuario(string cpf){
+                        if(File.Exists(CadastroUsuario + "/" + cpf + ".txt")) {
+                                try {
+                                 File.Delete("Usuarios/" + cpf + ".txt");
+                                        Console.WriteLine();
+                                        Console.WriteLine("Usuário excluído!");
+                        }
+                                catch(IOException e) {
+                                        Console.WriteLine(e.Message);
+                                }
                 }
-                catch(IOException e) {
-                    Console.WriteLine(e.Message);
+                        else {
+                        Console.WriteLine("CPF inválido, digite novamente: ");
+                        }
                 }
-            }
-            else {
-                Console.WriteLine("CPF inválido, digite novamente: ");
-            }
-		}
+
+                //Método para deletar livro registrado
+                public static void DeletarLivro(string codigo){
+                        if(File.Exists(Livros + "/" + codigo + ".txt")) {
+                                try {
+                                 File.Delete("Livros/" + codigo + ".txt");
+                                        Console.WriteLine();
+                                        Console.WriteLine("Livro excluído!");
+                        }
+                                catch(IOException e) {
+                                        Console.WriteLine(e.Message);
+                                }
+                }
+                        else {
+                        Console.WriteLine("Código inválido, digite novamente: ");
+                        }
+                }
        
         // Métodos GET / SET
         public string GetNome() {

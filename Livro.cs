@@ -6,13 +6,15 @@ class Livro {
 	private string Titulo { get; set; }
 	private string Autor { get; set; }
 	private string Genero { get; set; }
+        private DateTime DataRegistro {get; set;}
 
 	//Construtor com parametros de inicialização
-	public Livro(string codLivro, string titulo, string autor, string genero){
+	public Livro(string codLivro, string titulo, string autor, string genero, DateTime dataregistro ){
 		CodLivro = codLivro;
 		Titulo = titulo;
 		Autor = autor;
 		Genero = genero;
+                DataRegistro = dataregistro;
 	}
 
 	//Construtor Vazio 
@@ -49,5 +51,13 @@ class Livro {
 	public string getGenero(){
 		return Genero;
 	}
+
+        public DateTime GetDataRegistro() {
+                return DataRegistro;
+        }
+
+        public void SetDataRegistro (DateTime registro) {
+                DataRegistro = registro;
+        }
 
 }

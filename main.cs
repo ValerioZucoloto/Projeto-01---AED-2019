@@ -11,8 +11,10 @@ class MainClass {
 		Usuario usuario = new Usuario();
 		Endereco endereco = new Endereco();
 		Reserva reserva = new Reserva();
-        List <Livro> novosLivros = new List<Livro>();
+                List <Livro> novosLivros = new List<Livro>();
 		DateTime data = DateTime.Now;
+                DateTime cadastro = DateTime.Now;
+                DateTime registro = DateTime.Now;
 
         Console.WriteLine();
 
@@ -209,7 +211,7 @@ class MainClass {
 
             	}
 
-			while(escolha != 6) {
+			while(escolha != 7) {
 
                 	switch(escolha) {
 						case 1:
@@ -237,7 +239,7 @@ class MainClass {
 								escolha = int.Parse(Console.ReadLine());
 							}
 							break;
-                    	case 2:
+                    	                        case 2:
 							Console.WriteLine();
 							Console.Write("Nome: ");
 							string nome = Console.ReadLine();
@@ -269,6 +271,8 @@ class MainClass {
 							usuario.SetEmail(email);
 							usuario.cadastrarEndereco(endereco);
 
+                                                        usuario.SetDataCadastro(cadastro);
+
 							if(!File.Exists("Usuarios")){
 								Directory.CreateDirectory("Usuarios");
 								Biblioteca.CadastrarUsuario(usuario);
@@ -296,7 +300,7 @@ class MainClass {
 								escolha = int.Parse(Console.ReadLine());
 
 							}
-							break;
+						break;
 						case 3:
 
 							Console.WriteLine();
@@ -314,6 +318,8 @@ class MainClass {
 							livro.SetTitulo(titulo);
 							livro.SetAutor(autor);
 							livro.SetGenero(genero);
+
+                                                        livro.SetDataRegistro(registro);
 
 							novosLivros.Add (livro);
 
@@ -349,14 +355,14 @@ class MainClass {
 							Biblioteca.CadastrarLivro(novosLivros);
 							novosLivros.Clear();
 
-                            Biblioteca.OpcoesDisponiveis();
+                                                        Biblioteca.OpcoesDisponiveis();
 
 							Console.Write("Escolha a opção: ");
 							escolha = int.Parse(Console.ReadLine());
                                                         
-                            break;
+                                                break;
 
-							case 4:
+						case 4:
 							Console.WriteLine();	
 
 							Console.Write("Informe o CPF: ");
@@ -384,13 +390,13 @@ class MainClass {
 								escolha = int.Parse(Console.ReadLine());
 
 							}
-							break;
+						break;
 
-							case 5:
+						case 5:
 
 							Console.WriteLine();
 							Console.Write("Digite o CPF: ");
-           					cpf = Console.ReadLine().Replace(".", "").Replace("-", "").Trim();
+           					        cpf = Console.ReadLine().Replace(".", "").Replace("-", "").Trim();
 
 							Biblioteca.DeletarUsuario(cpf);
 
@@ -408,13 +414,42 @@ class MainClass {
 
 								Console.Write("Escolha a opção: ");
 								escolha = int.Parse(Console.ReadLine());
-                                Usuario.OpcoesDisponiveis();
+                                                                Usuario.OpcoesDisponiveis();
 								Console.Write("Escolha a opção: ");
-                    		    escolha = int.Parse(Console.ReadLine());
+                    		                                escolha = int.Parse(Console.ReadLine());
 
 							}
 
-							break;
+						break;
+
+                                                case 6:
+                                                        Console.WriteLine();
+							Console.Write("Digite o código do livro: ");
+           					        codigo = Console.ReadLine();
+
+							Biblioteca.DeletarLivro(codigo);
+
+							Biblioteca.OpcoesDisponiveis();
+
+							Console.Write("Escolha a opção: ");
+							escolha = int.Parse(Console.ReadLine());
+
+							while(escolha < 1 || escolha > 5) {
+
+								Console.WriteLine();
+								Console.WriteLine("Opção Inválida");
+
+								Biblioteca.OpcoesDisponiveis();
+
+								Console.Write("Escolha a opção: ");
+								escolha = int.Parse(Console.ReadLine());
+                                                                Usuario.OpcoesDisponiveis();
+								Console.Write("Escolha a opção: ");
+                    		                                escolha = int.Parse(Console.ReadLine());
+
+							}
+                                                break;
+
 
                 		}
             	}
