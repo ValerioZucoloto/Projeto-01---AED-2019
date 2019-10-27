@@ -11,8 +11,10 @@ class MainClass {
 		Usuario usuario = new Usuario();
 		Endereco endereco = new Endereco();
 		Reserva reserva = new Reserva();
-        List <Livro> novosLivros = new List<Livro>();
+                List <Livro> novosLivros = new List<Livro>();
 		DateTime data = DateTime.Now;
+                DateTime cadastro = DateTime.Now;
+                DateTime registro = DateTime.Now;
 
         Console.WriteLine();
 
@@ -215,7 +217,7 @@ class MainClass {
             	Console.Write("Escolha a opção: ");
             	int escolha = int.Parse(Console.ReadLine());
 
-            	if(escolha < 1 || escolha > 6) {
+            	if(escolha < 1 || escolha > 7) {
 
                 	Console.WriteLine();
                 	Console.WriteLine("Opção Inválida");
@@ -225,7 +227,7 @@ class MainClass {
                 	Console.Write("Escolha a opção: ");
                 	escolha = int.Parse(Console.ReadLine());
 
-                	while(escolha < 1 || escolha > 6) {
+                	while(escolha < 1 || escolha > 7) {
 
                     	Console.WriteLine();
                     	Console.WriteLine("Opção Inválida");
@@ -239,7 +241,7 @@ class MainClass {
 
             	}
 
-			while(escolha != 6) {
+			while(escolha != 7) {
 
                 	switch(escolha) {
 						case 1:
@@ -256,7 +258,7 @@ class MainClass {
 							escolha = int.Parse(Console.ReadLine());
 
 							
-							while(escolha < 1 || escolha > 5) {
+							while(escolha < 1 || escolha > 7) {
 								Console.Clear();
 
 								Console.WriteLine("Opção Inválida");
@@ -299,6 +301,8 @@ class MainClass {
 							usuario.SetEmail(email);
 							usuario.cadastrarEndereco(endereco);
 
+                                                        usuario.SetDataCadastro(cadastro);
+
 							if(!File.Exists("Usuarios")){
 								Directory.CreateDirectory("Usuarios");
 								Biblioteca.CadastrarUsuario(usuario);
@@ -315,7 +319,7 @@ class MainClass {
 							Console.Write("Escolha a opção: ");
 							escolha = int.Parse(Console.ReadLine());
 
-							while(escolha < 1 || escolha > 5) {
+							while(escolha < 1 || escolha > 7) {
 
 								Console.WriteLine();
 								Console.WriteLine("Opção Inválida");
@@ -344,6 +348,8 @@ class MainClass {
 							livro.SetTitulo(titulo);
 							livro.SetAutor(autor);
 							livro.SetGenero(genero);
+
+                                                        livro.SetDataRegistro(registro);
 
 							novosLivros.Add (livro);
 
@@ -400,7 +406,7 @@ class MainClass {
 							Console.Write("Escolha a opção: ");
 							escolha = int.Parse(Console.ReadLine());
 
-							while(escolha < 1 || escolha > 5) {
+							while(escolha < 1 || escolha > 7) {
 
 								Console.WriteLine();
 								Console.WriteLine("Opção Inválida");
@@ -420,7 +426,7 @@ class MainClass {
 
 							Console.WriteLine();
 							Console.Write("Digite o CPF: ");
-           					cpf = Console.ReadLine().Replace(".", "").Replace("-", "").Trim();
+           					        cpf = Console.ReadLine().Replace(".", "").Replace("-", "").Trim();
 
 							Biblioteca.DeletarUsuario(cpf);
 
@@ -429,7 +435,7 @@ class MainClass {
 							Console.Write("Escolha a opção: ");
 							escolha = int.Parse(Console.ReadLine());
 
-							while(escolha < 1 || escolha > 5) {
+							while(escolha < 1 || escolha > 7) {
 
 								Console.WriteLine();
 								Console.WriteLine("Opção Inválida");
@@ -438,9 +444,39 @@ class MainClass {
 
 								Console.Write("Escolha a opção: ");
 								escolha = int.Parse(Console.ReadLine());
-                                Usuario.OpcoesDisponiveis();
+                                                                Usuario.OpcoesDisponiveis();
 								Console.Write("Escolha a opção: ");
-                    		    escolha = int.Parse(Console.ReadLine());
+                    		                                escolha = int.Parse(Console.ReadLine());
+
+							}
+
+							break;
+
+                                                        case 6:
+
+							Console.WriteLine();
+							Console.Write("Digite o código: ");
+           					        codigo = Console.ReadLine();
+
+							Biblioteca.DeletarLivro(codigo);
+
+							Biblioteca.OpcoesDisponiveis();
+
+							Console.Write("Escolha a opção: ");
+							escolha = int.Parse(Console.ReadLine());
+
+							while(escolha < 1 || escolha > 7) {
+
+								Console.WriteLine();
+								Console.WriteLine("Opção Inválida");
+
+								Biblioteca.OpcoesDisponiveis();
+
+								Console.Write("Escolha a opção: ");
+								escolha = int.Parse(Console.ReadLine());
+                                                                Usuario.OpcoesDisponiveis();
+								Console.Write("Escolha a opção: ");
+                    		                                escolha = int.Parse(Console.ReadLine());
 
 							}
 
