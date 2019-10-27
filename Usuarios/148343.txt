@@ -1,10 +1,10 @@
 ********** INFORMAÇÕES DE PERFIL **********
 Nome: Maria
-CPF: 123
+CPF: 148343
 E-mail: maria@gmail.com
 ********** INFORMAÇÕES DO ENDEREÇO **********
 Cidade: Serra
 Bairro: Laranjeiras
 Rua: Avenida Central
-Número: 0800
-CEP: : 16482-475
+Número: sem numero
+CEP: : 29167-155

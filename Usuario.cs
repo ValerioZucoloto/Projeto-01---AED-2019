@@ -5,22 +5,18 @@ class Usuario {
         private string Cpf {get; set;}
         private string Email {get; set;}
         private Endereco MeuEndereco {get; set;}
-	private string Status { get; set; }
 
         // Construtor com paramêtros de entrada
         public Usuario (string nome, string cpf, string email, Endereco meuEndereco) {
-                Nome = nome;
-                Cpf = cpf;
-                Email = email;
-                MeuEndereco = meuEndereco;
-		Status = "Ativo";
+			Nome = nome;
+			Cpf = cpf;
+			Email = email;
+			MeuEndereco = meuEndereco;
         }
 
         public Usuario (string nome) {
                 Nome = nome;
         }
-
-        
 
         // Construtor vazio
         public Usuario() {
@@ -56,14 +52,6 @@ class Usuario {
                 return MeuEndereco;
         }
 
-		public void SetStatus(string status) {
-                Status = status;
-        }
-        
-        public string GetStatus() {
-                return Status;
-        }
-
         // Métodos principais
         public void cadastrarEndereco(Endereco novoEndereco) {
                 MeuEndereco = novoEndereco;
@@ -81,25 +69,17 @@ class Usuario {
 		Console.WriteLine();
 	}
 
-
-        
-
         // Método para exibir as informações da classe Usuario
-        public string Exibe() {
-                return "Nome: " 
-                + Nome 
-                + "\nCodigo usuário: " 
-                + "\nCPF: "
-                + Cpf 
-                + "\nEmail: " 
-                + Email 
-                + "Endereço: "
-                + MeuEndereco;
-        }
-
-
-
-
-        
+    public string Exibe() {
+		return "Nome: " 
+		+ Nome 
+		+ "\nCodigo usuário: " 
+		+ "\nCPF: "
+		+ Cpf 
+		+ "\nEmail: " 
+		+ Email 
+		+ "Endereço: "
+		+ MeuEndereco;
+    }  
 
 }

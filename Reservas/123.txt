@@ -1,0 +1,26 @@
+*************** INFORMAÇÕES DO LIVRO ****************
+Código: 1649
+Titulo: Como o sol chegou
+Autor: Marcos ponte
+Genero: Aventura
+*************** INFORMAÇÕES DO USUÁRIO ****************
+Nome Usuário: Arley Pereira Santana
+CPF: 123
+E-mail: arley1995@ucl.br
+*************** INFORMAÇÕES DO RESERVA ****************
+Data: 10/27/2019 1:23:06 AM
+Devolução: 11/4/2019 1:23:06 AM
+
+*************** INFORMAÇÕES DO LIVRO ****************
+Código: 1649
+Titulo: Como o sol chegou
+Autor: Marcos ponte
+Genero: Aventura
+*************** INFORMAÇÕES DO USUÁRIO ****************
+Nome Usuário: Maria Almeida
+CPF: 123
+E-mail: maria@gmail.com
+*************** INFORMAÇÕES DO RESERVA ****************
+Data: 26/10/2019 22:25:11
+Devolução: 02/11/2019 22:25:11
+

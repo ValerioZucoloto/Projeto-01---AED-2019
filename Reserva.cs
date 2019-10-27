@@ -7,7 +7,7 @@ class Reserva {
         private DateTime DataDevolucao { get; set; }
         private Livro LivroObj { get; set; }
         private Usuario UsuarioObj { get; set; }
-	private bool Status { get; set; } 
+		private bool Status { get; set; } 
 
         //Construtor com parâmetros de inicialização
         public Reserva(string codReserva, DateTime dataRecebimento, DateTime dataDevolucao, Livro livroObj, Usuario usuarioObj) {

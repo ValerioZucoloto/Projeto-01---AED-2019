@@ -4,15 +4,18 @@ class Endereco {
         private string Cidade {get; set;}
         private string Bairro {get; set;}
         private string Rua {get; set;}
-        private int Numero {get; set;} 
-        private int Cep {get; set;} 
+        private string Numero {get; set;} 
+        private string Cep {get; set;} 
 
-        public Endereco (string cidade, string bairro, string rua, int numero, int cep) {
+        public Endereco (string cidade, string bairro, string rua, string numero, string cep) {
                 Cidade = cidade;
                 Bairro = bairro;
                 Rua = rua;
                 Numero = numero;
                 Cep = cep;
+        }
+
+		public Endereco () {
         }
 
         public string GetCidade() {
@@ -39,19 +42,33 @@ class Endereco {
                 Rua = novaRua;
         }
 
-        public int getNumero() {
+        public string getNumero() {
                 return Numero;
         }
 
-        public void SetNumero (int novoNumero) {
+        public void SetNumero (string novoNumero) {
                 Numero = novoNumero;
         }
 
-        public int GetCep() {
+        public string GetCep() {
                 return Cep;
         }
 
-        public void SetCep (int novoCep) {
+        public void SetCep (string novoCep) {
                 Cep = novoCep;
         }
+
+		public override string ToString() {
+			return "Cidade: " 
+					+ Cidade 
+					+ "\nBairro: "
+					+ Bairro 
+					+ "\nRua: "
+					+ Rua 
+					+ "\nNúmero: " 
+					+ Numero
+					+ "\nCEP: : "
+					+ Cep;
+    	}
+
 }

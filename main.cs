@@ -1,44 +1,46 @@
 using System;
 using System.IO;
+using System.Globalization;
 using System.Collections.Generic;
 
 class MainClass {
     public static void Main(string[] args) {
 
+		Console.Clear();
+
 		Usuario usuario = new Usuario();
+		Endereco endereco = new Endereco();
 		Reserva reserva = new Reserva();
-                List <Livro> novosLivros = new List<Livro>();
+        List <Livro> novosLivros = new List<Livro>();
+		DateTime data = DateTime.Now;
 
         Console.WriteLine();
 
         Console.WriteLine("--------------- LOGIN ---------------");
         Console.Write("Usuário: ");
         string login = Console.ReadLine();
-        Console.Write("Senha: ");
-        int senha = int.Parse(Console.ReadLine());
 
-        while(login != "usuario" && senha != 123 || login != "admin" && senha != 123) {
+        while(login != "usuario" && login != "admin") {
 
             Console.WriteLine();
 
-            Console.WriteLine("Senha Inválida!");
+			Console.Clear();
+            Console.WriteLine("Login inválido");
 
             Console.WriteLine();
 
             Console.WriteLine("--------------- LOGIN ---------------");
-            Console.Write("Usuário: ");
+            Console.Write("Login: ");
             login = Console.ReadLine();
-            Console.Write("Senha: ");
-            senha = int.Parse(Console.ReadLine());
 
         }
 
-        	if(login == "usuario" && senha == 123) {
+        	if(login == "usuario") {
 
             	Usuario.OpcoesDisponiveis();
 
-			Console.Write("Escolha a opção: ");
-            	        int escolha = int.Parse(Console.ReadLine());
+				Console.Write("Escolha a opção: ");
+             	int escolha = int.Parse(Console.ReadLine());
 
 			if(escolha < 1 || escolha > 3) {
 
@@ -69,64 +71,121 @@ class MainClass {
 						case 1:
 							Console.WriteLine();
 
-							Biblioteca.ExibirLivrosDisponiveis();
+								if(Biblioteca.ExibirLivrosDisponiveis()){
+									Console.WriteLine();
+									
+									Console.Write("Deseja Reservar [S/N]: ");
+									char resp = char.Parse(Console.ReadLine());
 
-							Console.WriteLine();
-							Console.Write("Código do livro: ");
-							string codLivro = Console.ReadLine();
+									if(resp == 'S' || resp == 's'){
+										Console.WriteLine();
+										Console.Write("Código do livro: ");
+										string codLivro = Console.ReadLine();
 
-							Console.WriteLine();
-							Console.Write("Nome Usuário: ");
-							string nomeUser = Console.ReadLine();
-							Console.Write("CPF Usuário: ");
-							string cpfUser = Console.ReadLine();
-							Console.Write("Email Usuário: ");
-							string emailUser = Console.ReadLine();
+										Console.WriteLine();
+										Console.Write("Nome Usuário: ");
+										string nomeUser = Console.ReadLine();
+										Console.Write("CPF Usuário: ");
+										string cpfUser = Console.ReadLine();
+										Console.Write("Email Usuário: ");
+										string emailUser = Console.ReadLine();
+										Console.Write("Por quantos dias deseja ler o livro: ");
+										int devolucao = int.Parse(Console.ReadLine());
 
-							usuario.SetNome(nomeUser);
-							usuario.SetCpf(cpfUser);
-							usuario.SetEmail(emailUser);
+										usuario.SetNome(nomeUser);
+										usuario.SetCpf(cpfUser);
+										usuario.SetEmail(emailUser);
 
-							reserva.SetUsuario(usuario);
-							Biblioteca.verificaReserva(reserva, codLivro);
+										reserva.SetUsuario(usuario);
+										reserva.SetDataRecebimento(data);
+										DateTime dataDevolucao = data.AddDays(devolucao);
+										reserva.SetDataDevolucao(dataDevolucao);
 
-							Usuario.OpcoesDisponiveis();
-							
-							Console.Write("Escolha a opção: ");
-                    		                        escolha = int.Parse(Console.ReadLine());
+										Console.WriteLine();
+										Biblioteca.verificaReserva(reserva, codLivro);
+										
+										Usuario.OpcoesDisponiveis();
+										
+										Console.Write("Escolha a opção: ");
+										escolha = int.Parse(Console.ReadLine());
 
-						break;
+										while(escolha < 1 || escolha > 3) {
 
-                                                case 2:
-                                                        
-                                                        Console.WriteLine();
-                                                        Console.WriteLine ("Informe o CPF: ");
-                                                        string Cpf = Console.ReadLine();
-                                                        
-                                                        bool valor = Biblioteca.HistoricoReservas(Cpf);
+											Console.WriteLine();
+											Console.WriteLine("Opção Inválida");
 
-                                                        Usuario.OpcoesDisponiveis();
-							Console.Write("Escolha a opção: ");
-                    		                        escolha = int.Parse(Console.ReadLine());
+											Usuario.OpcoesDisponiveis();
 
-                                                                                                             
-                                                        
-                                                break;
-					}
+											Console.Write("Escolha a opção: ");
+											escolha = int.Parse(Console.ReadLine());
+										}	
+									}else{
+										Usuario.OpcoesDisponiveis();
 
-                                                
+										Console.Write("Escolha a opção: ");
+										escolha = int.Parse(Console.ReadLine());
+
+										while(escolha < 1 || escolha > 3) {
+
+											Console.WriteLine();
+											Console.WriteLine("Opção Inválida");
+
+											Usuario.OpcoesDisponiveis();
+
+											Console.Write("Escolha a opção: ");
+											escolha = int.Parse(Console.ReadLine());
+										}
+									}
+
+								}
+									
+							break;
+
+                            case 2:
+
+								Console.WriteLine();
+								Console.Write ("Informe o CPF: ");
+								string cpf = Console.ReadLine();
+
+								if(File.Exists("Reservas/" + cpf + ".txt")){
+									Console.WriteLine();
+									Biblioteca.HistoricoReservas(cpf);
+								}else{
+
+									Console.WriteLine();
+									Console.WriteLine("CPF inválido ou não tem histórico");
+
+									Usuario.OpcoesDisponiveis();
+									Console.Write("Escolha a opção: ");
+									escolha = int.Parse(Console.ReadLine());
+
+									while(escolha < 1 || escolha > 3) {
+
+										Console.WriteLine();
+										Console.WriteLine("Opção Inválida");
+
+										Usuario.OpcoesDisponiveis();
+
+										Console.Write("Escolha a opção: ");
+										escolha = int.Parse(Console.ReadLine());
+									}
+
+								}
+								break;
+
+					}                          
 
 				}
 
         	}
-        	else if(login == "admin" && senha == 123) {
+        	else if(login == "admin") {
 
             	Biblioteca.OpcoesDisponiveis();
 
             	Console.Write("Escolha a opção: ");
             	int escolha = int.Parse(Console.ReadLine());
 
-            	if(escolha < 1 || escolha > 5 && escolha != 6) {
+            	if(escolha < 1 || escolha > 6) {
 
                 	Console.WriteLine();
                 	Console.WriteLine("Opção Inválida");
@@ -136,7 +195,7 @@ class MainClass {
                 	Console.Write("Escolha a opção: ");
                 	escolha = int.Parse(Console.ReadLine());
 
-                	while(escolha < 1 || escolha > 5) {
+                	while(escolha < 1 || escolha > 6) {
 
                     	Console.WriteLine();
                     	Console.WriteLine("Opção Inválida");
@@ -156,27 +215,27 @@ class MainClass {
 						case 1:
 
 							Console.WriteLine();
-							Biblioteca.ExibirLivrosDisponiveis();
 
+							Console.Clear();
+							Biblioteca.ExibirLivrosDisponiveis();
+							
 							Biblioteca.OpcoesDisponiveis();
 							Console.WriteLine();
 
 							Console.Write("Escolha a opção: ");
 							escolha = int.Parse(Console.ReadLine());
 
+							
 							while(escolha < 1 || escolha > 5) {
+								Console.Clear();
 
-								Console.WriteLine();
 								Console.WriteLine("Opção Inválida");
 
 								Biblioteca.OpcoesDisponiveis();
 
 								Console.Write("Escolha a opção: ");
 								escolha = int.Parse(Console.ReadLine());
-
 							}
-							break;
-
 							break;
                     	case 2:
 							Console.WriteLine();
@@ -187,12 +246,39 @@ class MainClass {
 							Console.Write("E-mail: ");
 							string email = Console.ReadLine();
 
-							Usuario newUsuario = new Usuario();
-							newUsuario.SetNome(nome);
-							newUsuario.SetCpf(cpf);
-							newUsuario.SetEmail(email);
+							Console.WriteLine();
+							Console.Write("Endereço: ");
+							string rua = Console.ReadLine();
+							Console.Write("Bairro: ");
+							string bairro = Console.ReadLine();
+							Console.Write("Cidade: ");
+							string cidade = Console.ReadLine();
+							Console.Write("Número: ");
+							string numero = Console.ReadLine();
+							Console.Write("CEP: ");
+							string cep = Console.ReadLine();
 
-							Biblioteca.CadastrarUsuario(newUsuario);
+							endereco.SetCidade(cidade);
+							endereco.SetBairro(bairro);
+							endereco.SetRua(rua);
+							endereco.SetNumero(numero);
+							endereco.SetCep(cep);
+
+							usuario.SetNome(nome);
+							usuario.SetCpf(cpf);
+							usuario.SetEmail(email);
+							usuario.cadastrarEndereco(endereco);
+
+							if(!File.Exists("Usuarios")){
+								Directory.CreateDirectory("Usuarios");
+								Biblioteca.CadastrarUsuario(usuario);
+							}else{
+								Biblioteca.CadastrarUsuario(usuario);
+							}
+
+							Console.Clear();
+
+							Console.WriteLine("Cadastro efetuado com sucesso!");
 
 							Biblioteca.OpcoesDisponiveis();
 
@@ -230,8 +316,8 @@ class MainClass {
 							livro.SetGenero(genero);
 
 							novosLivros.Add (livro);
-							//Biblioteca.CadastrarLivro(novosLivros);
 
+							Console.WriteLine();
 							Console.Write ("Deseja cadastrar um novo livro [S/N]: ");
 							char opcoes = char.Parse(Console.ReadLine());
 
@@ -254,36 +340,32 @@ class MainClass {
 								livro.SetAutor(autor);
 								livro.SetGenero(genero);
 								
-								//novosLivros.Clear();
 								novosLivros.Add (livro);
-								//Biblioteca.CadastrarLivro(novosLivros);
 
 								Console.Write ("Deseja cadastrar um novo livro ? (S/N)");
 								opcoes = char.Parse(Console.ReadLine());
 							}
 
-								Biblioteca.CadastrarLivro(novosLivros);
-								novosLivros.Clear();
+							Biblioteca.CadastrarLivro(novosLivros);
+							novosLivros.Clear();
 
-                                Biblioteca.OpcoesDisponiveis();
+                            Biblioteca.OpcoesDisponiveis();
 
 							Console.Write("Escolha a opção: ");
 							escolha = int.Parse(Console.ReadLine());
                                                         
-                                                break;
+                            break;
 
-                                                case 4:
-                                                        Console.WriteLine();
-							
-                                                        
-                                                        Console.Write("Informe o CPF: ");
-                                                        cpf = Console.ReadLine();
+							case 4:
+							Console.WriteLine();	
 
-							
+							Console.Write("Informe o CPF: ");
+							cpf = Console.ReadLine();
+
 							Console.WriteLine();
-                                                        Biblioteca.ExibirCadastroUsuario(cpf);
+							Biblioteca.ExibirCadastroUsuario(cpf);
 
-                                                        Biblioteca.OpcoesDisponiveis();
+							Biblioteca.OpcoesDisponiveis();
 
 							Console.Write("Escolha a opção: ");
 							escolha = int.Parse(Console.ReadLine());
@@ -297,16 +379,17 @@ class MainClass {
 
 								Console.Write("Escolha a opção: ");
 								escolha = int.Parse(Console.ReadLine());
-                                                                Usuario.OpcoesDisponiveis();
-							        Console.Write("Escolha a opção: ");
-                    		                                escolha = int.Parse(Console.ReadLine());
+								Usuario.OpcoesDisponiveis();
+								Console.Write("Escolha a opção: ");
+								escolha = int.Parse(Console.ReadLine());
 
 							}
-								break;
+							break;
+
 							case 5:
 
 							Console.WriteLine();
-							Console.Write("Digite o cpf: ");
+							Console.Write("Digite o CPF: ");
            					cpf = Console.ReadLine().Replace(".", "").Replace("-", "").Trim();
 
 							Biblioteca.DeletarUsuario(cpf);
@@ -337,6 +420,9 @@ class MainClass {
             	}
 
         	}
+
+			Console.WriteLine();
+			Console.WriteLine("Volte sempre!");
 
     }
 }
